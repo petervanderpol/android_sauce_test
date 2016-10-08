@@ -1,5 +1,6 @@
 package appium_01;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -24,18 +25,21 @@ public class MyClass {
         capabilities.setCapability("platforName", "Android");
         //capabilities.setCapability("appPackage", "com.danfoss.android_crosswalk_djinni_scc");
         //capabilities.setCapability("appActivity", "com.danfoss.android_crosswalk_djinni_scc.MainActivity");
-        capabilities.setCapability("appPackage", "com.danfoss.android_crosswalk_djinni_scc");
-        capabilities.setCapability("appActivity", "com.danfoss.android_crosswalk_djinni_scc.MainActivity");
+        //capabilities.setCapability("appPackage", "sauce_xamarin_test.sauce_xamarin_test");
+        //capabilities.setCapability("appActivity", "sauce_xamarin_test.sauce_xamarin_test.MainActivity");
+        File file = new File("C:\\test\\sauce_xamarin_test.sauce_xamarin_test.apk");
+        capabilities.setCapability("app", file.getAbsolutePath());
     
         dr = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
         WebDriverWait wait = new WebDriverWait(dr, 30);
-        
-        wait.until(ExpectedConditions.elementToBeClickable(By
-                .xpath("//android.webkit.WebView[@index='0']")));
-        
+                
+        wait.until(ExpectedConditions.elementToBeSelected(By.xpath("//android.widget.EditText[@index='0']")));
         WebElement txtbx = dr.findElementByXPath("//android.widget.EditText[@index='0']");
-        //txtbx.Text = "Hej Polle!;"
+        txtbx.sendKeys("Polle was here");
         
-            
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.Button[@index='0']")));
+        WebElement btn = dr.findElementByXPath("//android.widget.Button[@index='0']");
+        btn.click();
+                
     }
 }
