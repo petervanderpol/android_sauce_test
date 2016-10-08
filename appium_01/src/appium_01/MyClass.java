@@ -22,6 +22,8 @@ public class MyClass {
         capabilities.setCapability("deviceName", "Xperia Z Ultra");
         capabilities.setCapability("platforVersion", "5.1.1");
         capabilities.setCapability("platforName", "Android");
+        //capabilities.setCapability("appPackage", "com.danfoss.android_crosswalk_djinni_scc");
+        //capabilities.setCapability("appActivity", "com.danfoss.android_crosswalk_djinni_scc.MainActivity");
         capabilities.setCapability("appPackage", "com.danfoss.android_crosswalk_djinni_scc");
         capabilities.setCapability("appActivity", "com.danfoss.android_crosswalk_djinni_scc.MainActivity");
     
@@ -31,10 +33,9 @@ public class MyClass {
         wait.until(ExpectedConditions.elementToBeClickable(By
                 .xpath("//android.webkit.WebView[@index='0']")));
         
-        WebElement element = dr.findElementByXPath("//android.widget.Button[@index='9']");
-        element.click();
+        WebElement txtbx = dr.findElementByXPath("//android.widget.EditText[@index='0']");
+        //txtbx.Text = "Hej Polle!;"
         
-        element = dr.findElementById("lbl-5");
-        element.click();    
+            
     }
 }
